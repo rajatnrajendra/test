@@ -1,0 +1,49 @@
+TEST_VARS:
+    enable_api: 'true'
+
+
+    tempo_test:
+      device: csr_test
+      authentication: "yes"
+      validation: "yes"
+      return_data_type: "text"
+      url: 'www google com' #previously cmd for ttp parsing
+      apidata:
+        requesttype: "get"
+        url: https://www.google.com
+        # headers:
+            # Content-Type: "application/json"
+            # Accept: "application/json"
+            # Cache-Control: "no-cache"
+            # Authorization: Bearer ${bearer}
+        # jsondata:
+            # application_context: 
+                # application_id: "ex_snmp_trap_Cluster"
+                # context_id: "snmp_trap"
+            # device_data:
+                # device_id: ""
+                # host_name: ""
+            # query_options:
+                # page_token: ""
+                # page_size: 100
+      failure_message: 'BGP Routes Check failed'
+      #parser_type: "apistatus" #parser_type: "json"
+      # verify:
+        # - status_code:
+            # - 200
+            # - 201
+      verify:
+        - vrf:
+            - RAN-F1C
+            - RAN-F1U
+            - RAN-OAM
+            - SERVICE-MGMT
+          bgp_routes: '[1-9]\d*'
+
+
+
+
+
+
+
+
